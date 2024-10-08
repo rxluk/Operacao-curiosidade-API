@@ -1,0 +1,19 @@
+[
+  {
+    "Age": 22,
+    "UserName": "alkmin_lulia",
+    "Email": "user.alkmin@example.com",
+    "MaritalStatus": "solteira",
+    "Address": "rua doa anradas, 123",
+    "Occupation": "estudante",
+    "AcademicFormation": "engenharia",
+    "Speakers": [
+      {
+        "Id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "Name": "julia"
+      }
+    ],
+    "IsDeleted": true,
+    "Id": "8c7bdec6-8186-4ae2-b029-66d671517256"
+  }
+]
