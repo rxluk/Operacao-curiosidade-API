@@ -1,14 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using Operacao_curiosidade_API.Models;
+using Operacao_curiosidade_API.Models.DTO;
 using Operacao_curiosidade_API.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Operacao_curiosidade_API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CuriosityController : ControllerBase
     {
         private readonly ICuriosityService _curiosityService;
@@ -18,67 +15,32 @@ namespace Operacao_curiosidade_API.Controllers
             _curiosityService = curiosityService;
         }
 
-        // GET: api/Curiosity
-        [HttpGet]
-        public async Task<ActionResult<List<CuriosityOperation>>> GetAllCuriosities()
+        // Buscar curiosidades associadas a um usuário
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetCuriositiesByUser(Guid userId)
         {
-            var curiosities = await _curiosityService.GetAllCuriositiesAsync();
-            return Ok(curiosities);
-        }
-
-        // GET: api/Curiosity/user/{userId}
-        [HttpGet("user/{userId}")]
-        public async Task<ActionResult<List<CuriosityOperation>>> GetCuriositiesByUser(Guid userId)
-        {
-            var curiosities = await _curiosityService.GetCuriositiesByUserAsync(userId);
-            if (curiosities == null || curiosities.Count == 0)
-            {
-                return NotFound($"No curiosities found for user {userId}");
-            }
-
-            return Ok(curiosities);
-        }
-
-        // POST: api/Curiosity
-        [HttpPost]
-        public async Task<ActionResult<CuriosityOperation>> CreateCuriosity(CuriosityOperation curiosity)
-        {
+            var curiosity = await _curiosityService.GetCuriositiesByUserAsync(userId);
+            
             if (curiosity == null)
             {
-                return BadRequest("Curiosity is null");
+                return NotFound(); // Retorna 404 se não encontrar o usuário
             }
 
-            // Defina o UserId a partir do objeto User
-            curiosity.UserId = curiosity.User.Id; // Adiciona o ID do usuário
-
-            var createdCuriosity = await _curiosityService.CreateCuriosityAsync(curiosity);
-            return CreatedAtAction(nameof(GetCuriositiesByUser), new { userId = createdCuriosity.UserId }, createdCuriosity);
+            return Ok(curiosity); // Retorna 200 com os dados da curiosidade
         }
 
-        // PUT: api/Curiosity/user/{userId}
-        [HttpPut("user/{userId}")]
-        public async Task<ActionResult<CuriosityOperation>> UpdateCuriosity(Guid userId, CuriosityOperation curiosity)
+        // Atualizar curiosidades do usuário
+        [HttpPut("{userId}")]
+        public async Task<IActionResult> UpdateCuriosities(Guid userId, [FromBody] CuriosityDTO curiosityDto)
         {
-            var updatedCuriosity = await _curiosityService.UpdateCuriosityAsync(userId, curiosity);
-            if (updatedCuriosity == null)
-            {
-                return NotFound($"Curiosity for user {userId} not found");
-            }
+            var result = await _curiosityService.UpdateCuriositiesAsync(userId, curiosityDto);
 
-            return Ok(updatedCuriosity);
-        }
-
-        // DELETE: api/Curiosity/user/{userId}
-        [HttpDelete("user/{userId}")]
-        public async Task<IActionResult> DeleteCuriosity(Guid userId)
-        {
-            var result = await _curiosityService.DeleteCuriosityAsync(userId);
             if (!result)
             {
-                return NotFound($"Curiosity for user {userId} not found");
+                return NotFound(); // Retorna 404 se não encontrar o usuário
             }
 
-            return NoContent();
+            return NoContent(); // Retorna 204 se a atualização foi bem-sucedida
         }
     }
 }

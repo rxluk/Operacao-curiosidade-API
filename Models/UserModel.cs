@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Operacao_curiosidade_API.Models
@@ -15,11 +16,24 @@ namespace Operacao_curiosidade_API.Models
         [Required(ErrorMessage = "Dados associados ao usuário são obrigatórios.")]
         public FactsAndData FactsAndData { get; set; }  // Dados associados ao usuário
 
+        // Propriedades de Curiosidade
+        public List<Interests> Interests { get; set; } = new List<Interests>();
+        public List<Feelings> Feelings { get; set; } = new List<Feelings>();
+        public List<Values> Values { get; set; } = new List<Values>();
+        public bool IsDeleted { get; set; }
+
         // Construtor
         public UserModel()
         {
             Id = Guid.NewGuid();
             FactsAndData = new FactsAndData(); // Inicializa FactsAndData
+            IsDeleted = false;
+        }
+
+        // Métodos
+        public void MarkAsDeleted()
+        {
+            IsDeleted = true;
         }
     }
 }

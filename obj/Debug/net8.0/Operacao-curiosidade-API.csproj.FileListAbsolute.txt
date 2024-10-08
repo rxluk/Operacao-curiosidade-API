@@ -1,13 +1,5 @@
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.csproj.AssemblyReference.cache
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.GeneratedMSBuildEditorConfig.editorconfig
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.AssemblyInfoInputs.cache
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.AssemblyInfo.cs
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.csproj.CoreCompileInputs.cache
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.MvcApplicationPartsAssemblyInfo.cs
-D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.MvcApplicationPartsAssemblyInfo.cache
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\appsettings.Development.json
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\appsettings.json
-D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Data\curiosities.json
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Data\users.json
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Operacao-curiosidade-API.exe
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Operacao-curiosidade-API.deps.json
@@ -21,6 +13,13 @@ D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Microsoft.Op
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Área de Trabalho\help\Operacao-curiosidade-API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.csproj.AssemblyReference.cache
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.GeneratedMSBuildEditorConfig.editorconfig
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.AssemblyInfoInputs.cache
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.AssemblyInfo.cs
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.csproj.CoreCompileInputs.cache
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.MvcApplicationPartsAssemblyInfo.cs
+D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\Operacao-curiosidade-API.MvcApplicationPartsAssemblyInfo.cache
 D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\staticwebassets.build.json
 D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\staticwebassets.development.json
 D:\Área de Trabalho\help\Operacao-curiosidade-API\obj\Debug\net8.0\staticwebassets\msbuild.Operacao-curiosidade-API.Microsoft.AspNetCore.StaticWebAssets.props

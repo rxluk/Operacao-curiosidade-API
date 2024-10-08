@@ -45,8 +45,14 @@ namespace Operacao_curiosidade_API.Services.Implementations
 
             if (existingUser != null)
             {
-                existingUser.Password = user.Password; // Atualiza apenas a senha ou adicione outros campos
+                existingUser.Password = user.Password; // Atualiza a senha
                 existingUser.FactsAndData = user.FactsAndData; // Atualiza os dados
+
+                // Atualiza as curiosidades
+                existingUser.Interests = user.Interests; // Atualiza os interesses
+                existingUser.Feelings = user.Feelings; // Atualiza os sentimentos
+                existingUser.Values = user.Values; // Atualiza os valores
+
                 await WriteToFileAsync(users);
                 return existingUser;
             }
