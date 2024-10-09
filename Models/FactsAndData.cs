@@ -24,7 +24,7 @@ namespace Operacao_curiosidade_API.Models{
         public string Occupation { get; set; }
         public string AcademicFormation { get; set; }
 
-        [Required(ErrorMessage = "Deve haver pelo menos um palestrante.")]
+        [Required(ErrorMessage = "Deve haver pelo menos um Usuário.")]
         public List<FactsAndDataSpeaker> Speakers { get; set; }
 
         public bool IsDeleted { get; set; }

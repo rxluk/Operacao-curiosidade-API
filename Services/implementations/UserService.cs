@@ -2,12 +2,14 @@ using System.IO;
 using System.Text.Json;
 using Operacao_curiosidade_API.Models;
 using Operacao_curiosidade_API.Services.Interfaces;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Operacao_curiosidade_API.Services.Implementations
 {
     public class UserService : IUserService
     {
-        private readonly string _filePath = Path.Combine("D:\\Área de Trabalho\\help\\Operacao-curiosidade-API", "Data", "users.json");
+        private readonly string _filePath = Path.Combine("C:\\Users\\LeonardoFerreiraGiro\\Documents\\Operacao-curiosidade-API", "Data", "users.json");
+
 
         public UserService()
         {
@@ -82,14 +84,27 @@ namespace Operacao_curiosidade_API.Services.Implementations
                 return new List<UserModel>(); // Retorna uma lista vazia se o arquivo não existir
             }
 
+            // Garante a leitura do arquivo com a codificação UTF-8
             using var fileStream = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
-            return await JsonSerializer.DeserializeAsync<List<UserModel>>(fileStream) ?? new List<UserModel>();
+            var options = new JsonSerializerOptions
+            {
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping // Garante que acentos e caracteres especiais sejam aceitos
+            };
+            return await JsonSerializer.DeserializeAsync<List<UserModel>>(fileStream, options) ?? new List<UserModel>();
         }
 
         private async Task WriteToFileAsync(List<UserModel> users)
         {
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = true, // Formata o JSON com indentação
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping // Garante que acentos e caracteres especiais sejam aceitos
+            };
+
+            // Garante a escrita do arquivo com a codificação UTF-8
             using var fileStream = new FileStream(_filePath, FileMode.Create, FileAccess.Write);
-            await JsonSerializer.SerializeAsync(fileStream, users);
+            await JsonSerializer.SerializeAsync(fileStream, users, options);
         }
+
     }
 }
