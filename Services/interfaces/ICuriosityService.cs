@@ -1,17 +1,22 @@
-using Operacao_curiosidade_API.Models;
 using Operacao_curiosidade_API.Models.DTO;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Operacao_curiosidade_API.Services.Interfaces
 {
+    /// <summary>
+    /// Interface para serviços de curiosidade relacionados a usuários.
+    /// </summary>
     public interface ICuriosityService
     {
-        // Buscar curiosidades associadas a um usuário (retorna CuriosityDTO)
+        /// <summary>
+        /// Busca as curiosidades associadas a um usuário pelo seu ID.
+        /// </summary>
         Task<CuriosityDTO> GetCuriositiesByUserAsync(Guid userId);
         
-        // Atualizar curiosidades do usuário (recebe CuriosityDTO)
+        /// <summary>
+        /// Atualiza as curiosidades de um usuário.
+        /// </summary>
         Task<bool> UpdateCuriositiesAsync(Guid userId, CuriosityDTO curiosityDto);
     }
 }

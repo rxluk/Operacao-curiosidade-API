@@ -1,110 +1,77 @@
-using System.IO;
-using System.Text.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Operacao_curiosidade_API.Models;
 using Operacao_curiosidade_API.Services.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Operacao_curiosidade_API.Services.Implementations
 {
-    public class UserService : IUserService
+    public class CuriosityService : ICuriosityService
     {
-        private readonly string _filePath = Path.Combine("C:\\Users\\LeonardoFerreiraGiro\\Documents\\Operacao-curiosidade-API", "Data", "users.json");
+        private readonly string _filePath = "curiosities.json"; // Exemplo de caminho do arquivo
 
-
-        public UserService()
+        public async Task<List<CuriosityModel>> GetAllCuriositiesAsync()
         {
-            // Certifique-se de que o arquivo JSON exista
-            if (!File.Exists(_filePath))
+            var curiosities = await ReadFromFileAsync();
+            return curiosities;
+        }
+
+        public async Task<CuriosityModel> GetCuriosityByIdAsync(Guid id)
+        {
+            var curiosities = await ReadFromFileAsync();
+            return curiosities.FirstOrDefault(c => c.Id == id);
+        }
+
+        public async Task<CuriosityModel> AddCuriosityAsync(CuriosityModel curiosity)
+        {
+            var curiosities = await ReadFromFileAsync();
+            curiosities.Add(curiosity);
+            await WriteToFileAsync(curiosities);
+            return curiosity;
+        }
+
+        public async Task<CuriosityModel> UpdateCuriosityAsync(Guid id, CuriosityModel updatedCuriosity)
+        {
+            var curiosities = await ReadFromFileAsync();
+            var existingCuriosity = curiosities.FirstOrDefault(c => c.Id == id);
+
+            if (existingCuriosity != null)
             {
-                File.WriteAllText(_filePath, "[]"); // Cria um novo arquivo JSON com um array vazio
-            }
-        }
+                existingCuriosity.Title = updatedCuriosity.Title; // Exemplo de propriedade direta
+                existingCuriosity.Description = updatedCuriosity.Description; // Exemplo de propriedade direta
 
-        public async Task<List<UserModel>> GetAllUsersAsync()
-        {
-            return await ReadFromFileAsync();
-        }
-
-        public async Task<UserModel> GetUserByIdAsync(Guid id)
-        {
-            var users = await ReadFromFileAsync();
-            return users.FirstOrDefault(u => u.Id == id);
-        }
-
-        public async Task<UserModel> CreateUserAsync(UserModel user)
-        {
-            var users = await ReadFromFileAsync();
-            user.Id = Guid.NewGuid(); // Gera um novo ID
-            users.Add(user);
-            await WriteToFileAsync(users);
-            return user;
-        }
-
-        public async Task<UserModel> UpdateUserAsync(Guid id, UserModel user)
-        {
-            var users = await ReadFromFileAsync();
-            var existingUser = users.FirstOrDefault(u => u.Id == id);
-
-            if (existingUser != null)
-            {
-                existingUser.Password = user.Password; // Atualiza a senha
-                existingUser.FactsAndData = user.FactsAndData; // Atualiza os dados
-
-                // Atualiza as curiosidades
-                existingUser.Interests = user.Interests; // Atualiza os interesses
-                existingUser.Feelings = user.Feelings; // Atualiza os sentimentos
-                existingUser.Values = user.Values; // Atualiza os valores
-
-                await WriteToFileAsync(users);
-                return existingUser;
+                await WriteToFileAsync(curiosities);
+                return existingCuriosity;
             }
 
-            return null; // Retorna nulo se não encontrar o usuário
+            return null; // Retorna nulo se não encontrar a curiosidade
         }
 
-        public async Task<bool> DeleteUserAsync(Guid id)
+        public async Task<bool> DeleteCuriosityAsync(Guid id)
         {
-            var users = await ReadFromFileAsync();
-            var userToDelete = users.FirstOrDefault(u => u.Id == id);
+            var curiosities = await ReadFromFileAsync();
+            var existingCuriosity = curiosities.FirstOrDefault(c => c.Id == id);
 
-            if (userToDelete != null)
+            if (existingCuriosity != null)
             {
-                users.Remove(userToDelete); // Remove o usuário
-                await WriteToFileAsync(users);
+                curiosities.Remove(existingCuriosity);
+                await WriteToFileAsync(curiosities);
                 return true;
             }
 
-            return false; // Retorna falso se não encontrar o usuário
+            return false; // Retorna falso se não encontrar a curiosidade
         }
 
-        private async Task<List<UserModel>> ReadFromFileAsync()
+        private async Task<List<CuriosityModel>> ReadFromFileAsync()
         {
-            if (!File.Exists(_filePath))
-            {
-                return new List<UserModel>(); // Retorna uma lista vazia se o arquivo não existir
-            }
-
-            // Garante a leitura do arquivo com a codificação UTF-8
-            using var fileStream = new FileStream(_filePath, FileMode.Open, FileAccess.Read);
-            var options = new JsonSerializerOptions
-            {
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping // Garante que acentos e caracteres especiais sejam aceitos
-            };
-            return await JsonSerializer.DeserializeAsync<List<UserModel>>(fileStream, options) ?? new List<UserModel>();
+            // Implementação para ler o arquivo e deserializar as curiosidades
+            return new List<CuriosityModel>();
         }
 
-        private async Task WriteToFileAsync(List<UserModel> users)
+        private async Task WriteToFileAsync(List<CuriosityModel> curiosities)
         {
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true, // Formata o JSON com indentação
-                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping // Garante que acentos e caracteres especiais sejam aceitos
-            };
-
-            // Garante a escrita do arquivo com a codificação UTF-8
-            using var fileStream = new FileStream(_filePath, FileMode.Create, FileAccess.Write);
-            await JsonSerializer.SerializeAsync(fileStream, users, options);
+            // Implementação para serializar e escrever as curiosidades no arquivo
         }
-
     }
 }

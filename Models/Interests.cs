@@ -1,24 +1,42 @@
-namespace Operacao_curiosidade_API.Models{
+using System;
+
+namespace Operacao_curiosidade_API.Models
+{
     public class Interests
     {
-        // Conteúdo ou descrição do interesse
-        public string Content { get; set; }
+        // Propriedades privadas para encapsulamento
+        private string _content;
+        private DateTime? _lastUpdated;
 
-        // Data da última atualização do interesse
-        public DateTime? LastUpdated { get; set; }
+        public string Content
+        {
+            get => _content;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("O conteúdo do interesse não pode ser vazio.");
+                _content = value;
+                LastUpdated = DateTime.Now; // Atualiza a data de modificação quando o conteúdo é alterado
+            }
+        }
+
+        public DateTime? LastUpdated
+        {
+            get => _lastUpdated;
+            private set => _lastUpdated = value ?? DateTime.Now; // Define a data atual se for null
+        }
 
         // Construtor padrão inicializando valores default
         public Interests()
         {
-            LastUpdated = DateTime.Now;  // Define a data de criação ou atualização
+            Content = string.Empty; // Inicializa com string vazia
+            LastUpdated = DateTime.Now; // Define a data de criação ou atualização
         }
 
         // Método para atualizar o conteúdo do interesse
         public void UpdateContent(string newContent)
         {
-            Content = newContent;
-            LastUpdated = DateTime.Now;  // Atualiza a data de modificação
+            Content = newContent; // Atribui o novo conteúdo e atualiza LastUpdated
         }
-
     }
 }
