@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "p8EeXGhLoNE=",
+  "dgSpecHash": "x6DS6u7F7ro=",
   "success": true,
-  "projectFilePath": "D:\\Área de Trabalho\\help\\Operacao-curiosidade-API\\Operacao-curiosidade-API.csproj",
+  "projectFilePath": "D:\\Área de Trabalho\\ForLogic\\Operacao-curiosidade-API\\Operacao-curiosidade-API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.8\\microsoft.aspnetcore.openapi.8.0.8.nupkg.sha512",
     "C:\\Users\\lucas\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.8\\microsoft.entityframeworkcore.8.0.8.nupkg.sha512",

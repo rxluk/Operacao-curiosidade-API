@@ -1015,11 +1015,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Área de Trabalho\\help\\Operacao-curiosidade-API\\Operacao-curiosidade-API.csproj",
+      "projectUniqueName": "D:\\Área de Trabalho\\ForLogic\\Operacao-curiosidade-API\\Operacao-curiosidade-API.csproj",
       "projectName": "Operacao-curiosidade-API",
-      "projectPath": "D:\\Área de Trabalho\\help\\Operacao-curiosidade-API\\Operacao-curiosidade-API.csproj",
+      "projectPath": "D:\\Área de Trabalho\\ForLogic\\Operacao-curiosidade-API\\Operacao-curiosidade-API.csproj",
       "packagesPath": "C:\\Users\\lucas\\.nuget\\packages\\",
-      "outputPath": "D:\\Área de Trabalho\\help\\Operacao-curiosidade-API\\obj\\",
+      "outputPath": "D:\\Área de Trabalho\\ForLogic\\Operacao-curiosidade-API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lucas\\AppData\\Roaming\\NuGet\\NuGet.Config"
